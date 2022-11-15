@@ -8,14 +8,21 @@ import {
 } from "@chakra-ui/react";
 import { HiOutlineSearch } from "react-icons/hi";
 
-interface Iprops {
+export interface Modalprops {
   isOpen: boolean;
   closeHandler: () => void;
 }
 
-const SearchModal: React.FC<Iprops> = ({ isOpen = false, closeHandler }) => {
+const SearchModal: React.FC<Modalprops> = ({
+  isOpen = false,
+  closeHandler,
+}) => {
   return (
-    <Modal isOpen={isOpen} size={"xl"} onClose={closeHandler}>
+    <Modal
+      isOpen={isOpen}
+      size={{ base: "sm", md: "xl" }}
+      onClose={closeHandler}
+    >
       <ModalOverlay />
       <ModalContent className="py-3">
         <ModalBody className="flex items-center gap-4">
