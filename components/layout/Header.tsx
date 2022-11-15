@@ -24,15 +24,26 @@ const Header = () => {
     const handler = (e: KeyboardEvent) => {
       const key = e.key;
 
-      if (key !== "/") return;
-      e.preventDefault();
-      setIsModalOpen((prevState) => !prevState);
+      if (
+        key === "k" &&
+        (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)
+      ) {
+        e.preventDefault();
+        setIsModalOpen((prevState) => !prevState);
+        return;
+      }
+
+      if (key === "esc" && isModalOpen) {
+        e.preventDefault();
+        setIsModalOpen(false);
+        return;
+      }
     };
 
-    document.addEventListener("keypress", handler);
+    document.addEventListener("keydown", handler);
 
     return () => {
-      document.removeEventListener("keypress", handler);
+      document.removeEventListener("keydown", handler);
     };
   }, []);
 
@@ -55,7 +66,7 @@ const Header = () => {
     <header
       className={`py-5 sticky top-0 z-30 w-full ${
         !atTopOfPage ? "shadow-sm" : ""
-      } bg-white transition-all duration-500`}
+      } bg-white transition-shadow duration-500`}
     >
       <Container
         className="flex justify-between items-center md:gap-24 lg:gap-52 "
@@ -102,9 +113,7 @@ const Header = () => {
               <HiOutlineSearch size={"1.5em"} />
               <p className="font-semibold font-quicksand">Cari template</p>
             </div>
-            <Kbd className="w-7 flex justify-center font-inter font-bold">
-              /
-            </Kbd>
+            <Kbd>Ctrl + K</Kbd>
           </CardBody>
         </Card>
 
