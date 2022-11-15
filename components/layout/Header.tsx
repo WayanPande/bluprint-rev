@@ -66,7 +66,7 @@ const Header = () => {
     <header
       className={`py-5 sticky top-0 z-30 w-full ${
         !atTopOfPage ? "shadow-sm" : ""
-      } bg-white transition-shadow duration-500`}
+      } bg-white transition-shadow duration-500 dark:bg-slate-800`}
     >
       <Container
         className="flex justify-between items-center md:gap-24 lg:gap-52 "
@@ -80,7 +80,7 @@ const Header = () => {
           <AiOutlineMenu />
         </Button>
 
-        <Link href={"/"} className="flex items-center cursor-pointer">
+        <Link href={"/"} className="flex items-center cursor-pointer gap-2">
           <Image
             src="/favicon.png"
             width={50}
@@ -88,7 +88,7 @@ const Header = () => {
             alt="logo bluprint"
             className="w-10 h-10"
           />
-          <h1 className="font-bold text-2xl md:text-3xl font-inter">
+          <h1 className="font-bold text-2xl md:text-3xl font-inter dark:text-white">
             Bluprint.
           </h1>
         </Link>
@@ -103,7 +103,7 @@ const Header = () => {
 
         <Card
           size={"sm"}
-          className="w-full cursor-pointer"
+          className="w-full cursor-pointer bg-white dark:bg-gray-700"
           rounded={"lg"}
           onClick={searchModalHandler}
           display={{ base: "none", md: "block" }}
@@ -113,13 +113,15 @@ const Header = () => {
               <HiOutlineSearch size={"1.5em"} />
               <p className="font-semibold font-quicksand">Cari template</p>
             </div>
-            <Kbd>Ctrl + K</Kbd>
+            <Kbd className="dark:bg-gray-700 dark:text-slate-400 dark:border-gray-500">
+              Ctrl + K
+            </Kbd>
           </CardBody>
         </Card>
 
         <Button
           colorScheme={"facebook"}
-          className="font-quicksand hidden"
+          className="font-quicksand hidden dark:bg-white dark:text-gray-800 dark:hover:bg-gray-300"
           display={{ base: "none", md: "flex" }}
           paddingInline={"7"}
         >

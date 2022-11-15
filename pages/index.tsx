@@ -4,7 +4,7 @@ import Header from "../components/layout/Header";
 
 const Home: NextPage = () => {
   return (
-    <>
+    <div className="dark">
       <Head>
         <title>Bluprint.id</title>
       </Head>
@@ -16,7 +16,7 @@ const Home: NextPage = () => {
           </h1>
         </main>
       </div>
-    </>
+    </div>
   );
 };
 
