@@ -1,4 +1,11 @@
-import { Button, Card, CardBody, Container, Kbd, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  Container,
+  Kbd,
+  useDisclosure,
+} from "@chakra-ui/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
@@ -8,17 +15,9 @@ import MenuModal from "../ui/MenuModal";
 import Link from "next/link";
 
 const Header = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
+  const searchModal = useDisclosure();
+  const menuModal = useDisclosure();
   const [atTopOfPage, setAtTopOfPage] = useState(true);
-
-  const searchModalHandler = () => {
-    setIsModalOpen((prevState) => !prevState);
-  };
-
-  const menuModalHandler = () => {
-    setIsMenuModalOpen((prevState) => !prevState);
-  };
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -29,13 +28,17 @@ const Header = () => {
         (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)
       ) {
         e.preventDefault();
-        setIsModalOpen((prevState) => !prevState);
+        if (searchModal.isOpen) {
+          searchModal.onClose();
+        } else {
+          searchModal.onOpen();
+        }
         return;
       }
 
-      if (key === "esc" && isModalOpen) {
+      if (key === "esc" && searchModal.isOpen) {
         e.preventDefault();
-        setIsModalOpen(false);
+        searchModal.onClose();
         return;
       }
     };
@@ -45,7 +48,7 @@ const Header = () => {
     return () => {
       document.removeEventListener("keydown", handler);
     };
-  }, []);
+  }, [searchModal.isOpen]);
 
   useEffect(() => {
     const handler = () => {
@@ -75,7 +78,7 @@ const Header = () => {
         <Button
           rounded={"full"}
           display={{ md: "none", base: "flex" }}
-          onClick={menuModalHandler}
+          onClick={menuModal.onOpen}
         >
           <AiOutlineMenu />
         </Button>
@@ -95,7 +98,7 @@ const Header = () => {
 
         <Button
           rounded={"full"}
-          onClick={searchModalHandler}
+          onClick={searchModal.onOpen}
           display={{ md: "none", base: "flex" }}
         >
           <HiOutlineSearch />
@@ -105,7 +108,7 @@ const Header = () => {
           size={"sm"}
           className="w-full cursor-pointer bg-white dark:bg-gray-700"
           rounded={"lg"}
-          onClick={searchModalHandler}
+          onClick={searchModal.onOpen}
           display={{ base: "none", md: "block" }}
         >
           <CardBody className="flex justify-between">
@@ -128,8 +131,11 @@ const Header = () => {
           Login
         </Button>
       </Container>
-      <SearchModal isOpen={isModalOpen} closeHandler={searchModalHandler} />
-      <MenuModal isOpen={isMenuModalOpen} closeHandler={menuModalHandler} />
+      <SearchModal
+        isOpen={searchModal.isOpen}
+        closeHandler={searchModal.onClose}
+      />
+      <MenuModal isOpen={menuModal.isOpen} closeHandler={menuModal.onClose} />
     </header>
   );
 };
