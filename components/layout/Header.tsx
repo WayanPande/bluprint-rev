@@ -13,6 +13,7 @@ import SearchModal from "../ui/SearchModal";
 import { AiOutlineMenu } from "react-icons/ai";
 import MenuModal from "../ui/MenuModal";
 import Link from "next/link";
+import ThemeButton from "../ui/ThemeButton";
 
 const Header = () => {
   const searchModal = useDisclosure();
@@ -122,14 +123,18 @@ const Header = () => {
           </CardBody>
         </Card>
 
-        <Button
-          colorScheme={"facebook"}
-          className="font-quicksand hidden dark:bg-white dark:text-gray-800 dark:hover:bg-gray-300"
-          display={{ base: "none", md: "flex" }}
-          paddingInline={"7"}
-        >
-          Login
-        </Button>
+        <div className="hidden md:flex gap-3">
+          <ThemeButton />
+
+          <Button
+            colorScheme={"facebook"}
+            className="font-quicksand hidden dark:bg-white dark:text-gray-800 dark:hover:bg-gray-300"
+            paddingInline={"5"}
+            fontWeight={"bold"}
+          >
+            Login
+          </Button>
+        </div>
       </Container>
       <SearchModal
         isOpen={searchModal.isOpen}

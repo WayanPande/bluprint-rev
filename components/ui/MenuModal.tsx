@@ -10,6 +10,7 @@ import {
 import { Modalprops } from "./SearchModal";
 import Image from "next/image";
 import { IoClose } from "react-icons/io5";
+import ThemeButton from "./ThemeButton";
 
 const MenuModal: React.FC<Modalprops> = ({ isOpen = false, closeHandler }) => {
   return (
@@ -62,6 +63,11 @@ const MenuModal: React.FC<Modalprops> = ({ isOpen = false, closeHandler }) => {
             >
               Login
             </Button>
+            <hr />
+            <div className="flex items-center justify-between px-3">
+              <h3 className="font-quicksand font-bold text-lg">Switch theme</h3>
+              <ThemeButton />
+            </div>
           </div>
         </ModalBody>
         <ModalFooter justifyContent={"center"}>

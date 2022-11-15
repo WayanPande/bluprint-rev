@@ -1,10 +1,28 @@
+import { useColorMode } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useEffect } from "react";
 import Header from "../components/layout/Header";
+import { useThemeStore } from "../store/theme-store";
 
 const Home: NextPage = () => {
+  const darkMode = useThemeStore((state) => state.darkMode);
+  const { setColorMode } = useColorMode();
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+
+    if (darkMode) {
+      root.classList.add("dark");
+      setColorMode("dark");
+    } else {
+      root.classList.remove("dark");
+      setColorMode("light");
+    }
+  }, [darkMode]);
+
   return (
-    <div className="dark">
+    <>
       <Head>
         <title>Bluprint.id</title>
       </Head>
@@ -16,7 +34,7 @@ const Home: NextPage = () => {
           </h1>
         </main>
       </div>
-    </div>
+    </>
   );
 };
 

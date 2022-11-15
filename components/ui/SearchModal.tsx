@@ -24,10 +24,7 @@ const SearchModal: React.FC<Modalprops> = ({
       size={{ base: "sm", md: "xl" }}
       onClose={closeHandler}
     >
-      <ModalOverlay
-        bg="blackAlpha.200"
-        backdropFilter="blur(6px) hue-rotate(90deg)"
-      />
+      <ModalOverlay bg="blackAlpha.200" backdropFilter="blur(6px)" />
       <ModalContent className="py-3">
         <ModalBody className="flex items-center gap-4">
           <HiOutlineSearch size={"1.5em"} className="text-slate-400" />
