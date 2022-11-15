@@ -6,7 +6,13 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'inter': ['Inter', 'sans-serif'],
+        'quicksand': ['Quicksand', 'sans-serif'],
+      }
+    },
+
   },
   plugins: [],
   darkMode: 'class',
