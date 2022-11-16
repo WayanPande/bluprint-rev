@@ -25,10 +25,6 @@ const ThemeButton = () => {
     setIsDarkMode(darkMode);
   }, [darkMode]);
 
-  useEffect(() => {
-    console.log(isScreenWidthMd);
-  }, [isScreenWidthMd]);
-
   return (
     <Menu>
       {isScreenWidthMd && (
