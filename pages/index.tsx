@@ -2,6 +2,7 @@ import { useColorMode } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
+import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
 import Home from "../components/layout/Home";
 import { useThemeStore } from "../store/theme-store";
@@ -29,6 +30,7 @@ const HomePage: NextPage = () => {
       </Head>
       <Header />
       <Home />
+      <Footer />
     </>
   );
 };

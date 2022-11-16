@@ -4,9 +4,19 @@ import React from "react";
 import { AiFillInstagram, AiFillYoutube } from "react-icons/ai";
 import { FaFacebookF, FaTiktok, FaWhatsapp } from "react-icons/fa";
 
-const SocialMediaList = () => {
+interface IProps {
+  isFooter?: boolean;
+}
+
+const SocialMediaList: React.FC<IProps> = ({ isFooter = false }) => {
+  const className = `${
+    isFooter
+      ? "justify-center flex text-gray-400"
+      : "flex flex-col fixed top-1/2 left-3 text-gray-400 -translate-y-1/2 z-50"
+  }`;
+
   return (
-    <div className=" flex flex-col fixed top-1/2 left-3 text-gray-400 -translate-y-1/2 z-50">
+    <div className={className}>
       <Button
         as={Link}
         href="https://www.tiktok.com/@bluprinthink.id"
