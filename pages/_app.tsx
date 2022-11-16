@@ -6,7 +6,7 @@ import ProgressBar from "@badrap/bar-of-progress";
 import { useEffect } from "react";
 
 const progress = new ProgressBar({
-  size: 5,
+  size: 2.5,
   color: "#45A9DD",
   className: "bar-of-progress",
   delay: 100,
