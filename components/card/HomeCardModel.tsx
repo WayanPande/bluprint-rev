@@ -14,17 +14,17 @@ const HomeCardModel: React.FC<IProps> = ({ type, img }) => {
         <div className="lg:h-80 object-contain">
           <Image
             src={img[0]}
-            alt="Green double couch with wooden legs"
+            alt={type}
             width={1024}
             height={1024}
-            className="group-hover:opacity-0 group-hover:hidden"
+            className="group-hover:opacity-0 group-hover:hidden rounded-lg"
           />
           <Image
             src={img[1]}
             width={1024}
             height={1024}
-            alt=""
-            className="opacity-0 hidden group-hover:opacity-100 group-hover:block object-contain w-full h-full"
+            alt={type + "frame"}
+            className="opacity-0 hidden group-hover:opacity-100 group-hover:block object-contain w-full h-full rounded-lg"
           />
         </div>
         <Heading size="md" mt={6}>
