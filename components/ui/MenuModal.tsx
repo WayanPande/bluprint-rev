@@ -6,31 +6,27 @@ import {
   ModalBody,
   ModalFooter,
   Button,
+  IconButton,
 } from "@chakra-ui/react";
 import { Modalprops } from "./SearchModal";
 import Image from "next/image";
 import { IoClose } from "react-icons/io5";
 import ThemeButton from "./ThemeButton";
+import Link from "next/link";
 
 const MenuModal: React.FC<Modalprops> = ({ isOpen = false, closeHandler }) => {
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={closeHandler}
-      size={"full"}
-      closeOnOverlayClick={false}
-    >
-      <ModalOverlay
-        bg="blackAlpha.300"
-        backdropFilter="blur(7px) hue-rotate(90deg)"
-      />
+    <Modal isOpen={isOpen} onClose={closeHandler}>
+      <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(7px)" />
       <ModalContent margin={".6rem"} borderRadius={"2xl"}>
-        <button
-          className="bg-blue-300 w-fit p-3 mt-3 ml-3 rounded-full"
+        <IconButton
+          className="w-fit mt-3 mr-3 self-end"
+          rounded={"full"}
           onClick={closeHandler}
-        >
-          <IoClose />
-        </button>
+          icon={<IoClose />}
+          aria-label="Close"
+        />
+
         <ModalBody mt={"1rem"}>
           <div className="w-full h-32 rounded-md bg-blue-300 mb-5"></div>
           <div className="flex flex-col justify-center gap-3">
@@ -60,6 +56,8 @@ const MenuModal: React.FC<Modalprops> = ({ isOpen = false, closeHandler }) => {
               fontWeight={"bold"}
               justifyContent={"flex-start"}
               className={"font-quicksand"}
+              as={Link}
+              href="/account/login"
             >
               Login
             </Button>
@@ -70,7 +68,7 @@ const MenuModal: React.FC<Modalprops> = ({ isOpen = false, closeHandler }) => {
             </div>
           </div>
         </ModalBody>
-        <ModalFooter justifyContent={"center"}>
+        <ModalFooter justifyContent={"center"} className="mt-10">
           <div className="flex items-center gap-2">
             <Image
               src="/favicon.png"

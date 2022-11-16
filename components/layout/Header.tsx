@@ -3,6 +3,7 @@ import {
   Card,
   CardBody,
   Container,
+  IconButton,
   Kbd,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -76,13 +77,13 @@ const Header = () => {
         className="flex justify-between items-center md:gap-24 lg:gap-52 "
         maxW={"container.xl"}
       >
-        <Button
+        <IconButton
           rounded={"full"}
           display={{ md: "none", base: "flex" }}
           onClick={menuModal.onOpen}
-        >
-          <AiOutlineMenu />
-        </Button>
+          icon={<AiOutlineMenu />}
+          aria-label="Open menu"
+        />
 
         <Link href={"/"} className="flex items-center cursor-pointer gap-2">
           <Image
@@ -97,13 +98,13 @@ const Header = () => {
           </h1>
         </Link>
 
-        <Button
+        <IconButton
           rounded={"full"}
           onClick={searchModal.onOpen}
           display={{ md: "none", base: "flex" }}
-        >
-          <HiOutlineSearch />
-        </Button>
+          icon={<HiOutlineSearch />}
+          aria-label="Search"
+        />
 
         <Card
           size={"sm"}
@@ -131,6 +132,8 @@ const Header = () => {
             className="font-quicksand hidden dark:bg-white dark:text-gray-800 dark:hover:bg-gray-300"
             paddingInline={"5"}
             fontWeight={"bold"}
+            as={Link}
+            href="/account/login"
           >
             Login
           </Button>
