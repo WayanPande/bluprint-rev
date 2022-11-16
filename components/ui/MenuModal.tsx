@@ -71,7 +71,7 @@ const MenuModal: React.FC<Modalprops> = ({ isOpen = false, closeHandler }) => {
           </div>
         </ModalBody>
         <ModalFooter justifyContent={"center"}>
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
             <Image
               src="/favicon.png"
               width={50}
