@@ -13,7 +13,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           ></link>
         </Head>
-        <body>
+        <body className="dark:bg-slate-800">
           <Main />
           <NextScript />
         </body>

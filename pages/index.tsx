@@ -23,13 +23,13 @@ const HomePage: NextPage = () => {
   }, [darkMode]);
 
   return (
-    <div className="dark:bg-slate-800">
+    <>
       <Head>
         <title>Bluprint.id</title>
       </Head>
       <Header />
       <Home />
-    </div>
+    </>
   );
 };
 
