@@ -11,6 +11,7 @@ import HomeCarousel from "../carousel/HomeCarousel";
 import { FaRegSmile } from "react-icons/fa";
 import { AiOutlineGift, AiOutlineHeart } from "react-icons/ai";
 import { IoIosPricetag } from "react-icons/io";
+import SocialMediaList from "../list/SocialMediaList";
 
 const Home = () => {
   const [isScreenWidthMd] = useMediaQuery("(min-width: 48em)");
@@ -118,6 +119,7 @@ const Home = () => {
           </div>
         )}
       </Container>
+      {isScreenWidthMd && <SocialMediaList />}
     </>
   );
 };
