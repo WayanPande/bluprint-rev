@@ -6,10 +6,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "@badrap/bar-of-progress": "^0.2.2",
     "@chakra-ui/react": "^2.4.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "framer-motion": "^6",
+    "framer-motion": "^7.6.7",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
