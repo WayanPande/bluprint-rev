@@ -2,6 +2,7 @@ import { Container, useMediaQuery } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
 import HomeCardModel from "../card/HomeCardModel";
+import PriceCard, { PRICING_TYPE } from "../card/PriceCard";
 import HomeMarquee from "../marquees/HomeMarquee";
 
 const Home = () => {
@@ -70,22 +71,17 @@ const Home = () => {
         </section>
       </Container>
       <HomeMarquee />
-      <Container maxW={"container.xl"}>
-        <h1>Lorem ipsum dolor sit amet.</h1>
-        <h1>Lorem ipsum dolor sit amet.</h1>
-        <h1>Lorem ipsum dolor sit amet.</h1>
-        <h1>Lorem ipsum dolor sit amet.</h1>
-        <h1>Lorem ipsum dolor sit amet.</h1>
-        <h1>Lorem ipsum dolor sit amet.</h1>
-        <h1>Lorem ipsum dolor sit amet.</h1>
-        <h1>Lorem ipsum dolor sit amet.</h1>
-        <h1>Lorem ipsum dolor sit amet.</h1>
-        <h1>Lorem ipsum dolor sit amet.</h1>
-        <h1>Lorem ipsum dolor sit amet.</h1>
-        <h1>Lorem ipsum dolor sit amet.</h1>
-        <h1>Lorem ipsum dolor sit amet.</h1>
-        <h1>Lorem ipsum dolor sit amet.</h1>
-        <h1>Lorem ipsum dolor sit amet.</h1>
+      <Container maxW={"container.xl"} className="mt-32 mb-96">
+        <h1 className="font-inter font-bold text-2xl lg:text-6xl lg:py-3 md:px-40 text-center mb-5">
+          Pricing
+        </h1>
+        <p className="text-center font-inter">
+          Price list untuk memesan jasa editing pada bluprint
+        </p>
+        <div className="flex flex-col md:flex-row items-end lg:gap-24 lg:px-20 gap-10 mt-20">
+          <PriceCard type={PRICING_TYPE.hardfile} />
+          <PriceCard type={PRICING_TYPE.softfile} />
+        </div>
       </Container>
     </>
   );
