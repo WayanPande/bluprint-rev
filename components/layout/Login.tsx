@@ -4,7 +4,6 @@ import {
   Divider,
   FormControl,
   FormErrorMessage,
-  FormHelperText,
   Input,
   InputGroup,
   InputRightElement,
@@ -53,7 +52,7 @@ const Login = () => {
         <h1 className="font-bold text-2xl md:text-4xl text-center">
           Log in to your account
         </h1>
-        <p className="md:text-xl">Enter your detail below</p>
+        <p className="md:text-xl text-center">Enter your detail below</p>
       </div>
       <form className="flex flex-col gap-4 mt-10" onSubmit={formSubmitHandler}>
         <FormControl isInvalid={isEmailError}>
@@ -120,7 +119,12 @@ const Login = () => {
       </div>
 
       <div className="flex justify-center mt-10 ">
-        <Button href={"/"} as={Link} variant="ghost" colorScheme={"linkedin"}>
+        <Button
+          href={"/account/register"}
+          as={Link}
+          variant="ghost"
+          colorScheme={"linkedin"}
+        >
           Create account
         </Button>
       </div>
