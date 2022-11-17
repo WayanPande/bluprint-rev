@@ -73,6 +73,29 @@ const MenuModal: React.FC<Modalprops> = ({ isOpen = false, closeHandler }) => {
                   Profile
                 </Button>
                 <hr />
+                <Button
+                  colorScheme="facebook"
+                  variant="ghost"
+                  fontWeight={"bold"}
+                  justifyContent={"flex-start"}
+                  className={"font-quicksand"}
+                  onClick={closeHandler}
+                  as={Link}
+                  href="/recommendation"
+                >
+                  Recommendation
+                </Button>
+                <hr />
+                <Button
+                  colorScheme="facebook"
+                  variant="ghost"
+                  fontWeight={"bold"}
+                  justifyContent={"flex-start"}
+                  className={"font-quicksand"}
+                >
+                  Favorite
+                </Button>
+                <hr />
               </>
             )}
 
