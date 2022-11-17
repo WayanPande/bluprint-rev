@@ -13,8 +13,19 @@ import Image from "next/image";
 import { IoClose } from "react-icons/io5";
 import ThemeButton from "./ThemeButton";
 import Link from "next/link";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../config/firebase";
+import { BiLogOut } from "react-icons/bi";
+import { signOut } from "firebase/auth";
 
 const MenuModal: React.FC<Modalprops> = ({ isOpen = false, closeHandler }) => {
+  const [user, loading, error] = useAuthState(auth);
+
+  const logoutHandler = () => {
+    signOut(auth);
+    closeHandler();
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={closeHandler}>
       <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(7px)" />
@@ -50,17 +61,48 @@ const MenuModal: React.FC<Modalprops> = ({ isOpen = false, closeHandler }) => {
               About
             </Button>
             <hr />
-            <Button
-              colorScheme="facebook"
-              variant="ghost"
-              fontWeight={"bold"}
-              justifyContent={"flex-start"}
-              className={"font-quicksand"}
-              as={Link}
-              href="/account/login"
-            >
-              Login
-            </Button>
+            {user && (
+              <>
+                <Button
+                  colorScheme="facebook"
+                  variant="ghost"
+                  fontWeight={"bold"}
+                  justifyContent={"flex-start"}
+                  className={"font-quicksand"}
+                >
+                  Profile
+                </Button>
+                <hr />
+              </>
+            )}
+
+            {!user && (
+              <Button
+                colorScheme="facebook"
+                variant="ghost"
+                fontWeight={"bold"}
+                justifyContent={"flex-start"}
+                className={"font-quicksand"}
+                onClick={closeHandler}
+                as={Link}
+                href="/account/login"
+              >
+                Login
+              </Button>
+            )}
+            {user && (
+              <Button
+                colorScheme="red"
+                variant="ghost"
+                fontWeight={"bold"}
+                justifyContent={"flex-start"}
+                className={"font-quicksand"}
+                leftIcon={<BiLogOut className="text-xl" />}
+                onClick={logoutHandler}
+              >
+                Log out
+              </Button>
+            )}
             <hr />
             <div className="flex items-center justify-between px-3">
               <h3 className="font-quicksand font-bold text-lg">Switch theme</h3>

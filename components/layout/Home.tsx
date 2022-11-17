@@ -30,6 +30,7 @@ const Home = () => {
             height={3000}
             className="w-full md:w-10/12"
             alt="raffi nagita original"
+            priority
           />
         </section>
 

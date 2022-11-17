@@ -1,10 +1,15 @@
 import {
+  Avatar,
   Button,
   Card,
   CardBody,
   Container,
   IconButton,
   Kbd,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   useDisclosure,
 } from "@chakra-ui/react";
 import Image from "next/image";
@@ -15,11 +20,23 @@ import { AiOutlineMenu } from "react-icons/ai";
 import MenuModal from "../ui/MenuModal";
 import Link from "next/link";
 import ThemeButton from "../ui/ThemeButton";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../config/firebase";
+import { signOut, User } from "firebase/auth";
+import { BiLogOut } from "react-icons/bi";
 
 const Navbar = () => {
   const searchModal = useDisclosure();
   const menuModal = useDisclosure();
   const [atTopOfPage, setAtTopOfPage] = useState(true);
+  const [userData, setUserData] = useState<User | null | undefined>();
+
+  const [user, loading, error] = useAuthState(auth);
+
+  useEffect(() => {
+    setUserData(user);
+    console.log(user);
+  }, [user]);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -69,7 +86,7 @@ const Navbar = () => {
 
   return (
     <header
-      className={`py-5 sticky top-0 z-30 w-full ${
+      className={`py-5 sticky top-0 z-30 w-full items-center ${
         !atTopOfPage ? "shadow-sm" : ""
       } bg-white transition-shadow duration-500 dark:bg-slate-800`}
     >
@@ -124,19 +141,45 @@ const Navbar = () => {
           </CardBody>
         </Card>
 
-        <div className="hidden md:flex gap-3">
+        <div className="hidden md:flex gap-3 md:items-center">
           <ThemeButton />
 
-          <Button
-            colorScheme={"facebook"}
-            className="font-quicksand hidden dark:bg-white dark:text-gray-800 dark:hover:bg-gray-300"
-            paddingInline={"5"}
-            fontWeight={"bold"}
-            as={Link}
-            href="/account/login"
-          >
-            Login
-          </Button>
+          {!userData && (
+            <Button
+              colorScheme={"facebook"}
+              className="font-quicksand hidden dark:bg-white dark:text-gray-800 dark:hover:bg-gray-300"
+              paddingInline={"5"}
+              fontWeight={"bold"}
+              as={Link}
+              href="/account/login"
+            >
+              Login
+            </Button>
+          )}
+          {userData && (
+            <Menu>
+              <MenuButton
+                as={Avatar}
+                aria-label="Options"
+                src={
+                  userData.photoURL ??
+                  `https://avatars.dicebear.com/api/initials/${userData?.email}.svg`
+                }
+                variant="outline"
+                className="cursor-pointer"
+              />
+
+              <MenuList className="font-inter">
+                <MenuItem>My Account</MenuItem>
+                <MenuItem onClick={() => signOut(auth)}>
+                  <p className="text-red-500 font-bold flex items-center gap-3">
+                    <BiLogOut className="text-xl" />
+                    Log out
+                  </p>
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          )}
         </div>
       </Container>
       <SearchModal

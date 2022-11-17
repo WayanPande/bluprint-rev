@@ -7,10 +7,14 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  useToast,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import React, { useState, useEffect, useCallback } from "react";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { auth } from "../../config/firebase";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -26,9 +30,20 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showReTypePassword, setShowReTypePassword] = useState(false);
 
+  const [enableButton, setEnableButton] = useState(false);
+
+  const [showToast, setShowToast] = useState(false);
+
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+
   const handleClickPassword = () => setShowPassword(!showPassword);
   const handleClickReTypePassword = () =>
     setShowReTypePassword(!showReTypePassword);
+
+  const toast = useToast();
+
+  const router = useRouter();
 
   const handleEmailInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -85,7 +100,62 @@ const Register = () => {
       setIsReTypePasswordError(true);
       return;
     }
+
+    createUserWithEmailAndPassword(email, password).then(() =>
+      setShowToast(true)
+    );
   };
+
+  useEffect(() => {
+    if (
+      email !== "" &&
+      name !== "" &&
+      reTypePassword !== "" &&
+      password !== "" &&
+      password.length >= 6
+    ) {
+      setEnableButton(true);
+    } else {
+      setEnableButton(false);
+    }
+  }, [email, name, reTypePassword, password]);
+
+  useEffect(() => {
+    let title = "",
+      desc = "",
+      status: "error" | "loading" | "success" | "info" | "warning" | undefined,
+      duration: number | null = null;
+
+    if (error) {
+      title = "Error.";
+      desc = error.message;
+      status = "error";
+      duration = 5000;
+    } else {
+      title = "Success.";
+      desc = "You're now has been registered.";
+      status = "success";
+      duration = 3000;
+    }
+
+    const redirect = () => {
+      setShowToast(false);
+      if (!error) {
+        router.push("/account/login");
+      }
+    };
+
+    if (showToast) {
+      toast({
+        title: title,
+        description: desc,
+        status: status,
+        duration: duration,
+        isClosable: true,
+        onCloseComplete: redirect,
+      });
+    }
+  }, [error, showToast]);
 
   return (
     <Container className="pt-20 mb-10">
@@ -168,31 +238,12 @@ const Register = () => {
           type="submit"
           size={"lg"}
           className="mt-7"
+          isDisabled={!enableButton}
+          isLoading={loading}
         >
           Sign up
         </Button>
       </form>
-      <div className="flex mt-10 gap-3 items-center">
-        <Divider className="border-8" />
-        <p className="font-quicksand font-bold text-slate-500">OR</p>
-        <Divider className="border-8" />
-      </div>
-      <div className="flex flex-col mt-10">
-        <Button
-          leftIcon={
-            <Image
-              src={"/image/icons/google.png"}
-              width={25}
-              height={25}
-              alt="Google Icon"
-            />
-          }
-          colorScheme="gray"
-          size={"lg"}
-        >
-          Continue with Google
-        </Button>
-      </div>
 
       <div className="flex justify-center mt-10 ">
         <Button

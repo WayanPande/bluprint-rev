@@ -7,10 +7,19 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  useToast,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React, { useState, useEffect } from "react";
+import {
+  useAuthState,
+  useSignInWithEmailAndPassword,
+  useSignInWithFacebook,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
+import { auth } from "../../config/firebase";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,6 +27,17 @@ const Login = () => {
   const [isEmailError, setIsEmailError] = useState(false);
   const [isPasswordError, setIsPasswordError] = useState(false);
   const [show, setShow] = useState(false);
+
+  const [signInWithEmailAndPassword, , loading] =
+    useSignInWithEmailAndPassword(auth);
+
+  const [signInWithGoogle, , googleLoading] = useSignInWithGoogle(auth);
+  const [signInWithFacebook, , facebookLoading] = useSignInWithFacebook(auth);
+  const [, , error] = useAuthState(auth);
+
+  const [showToast, setShowToast] = useState(false);
+  const toast = useToast();
+  const router = useRouter();
 
   const handleClick = () => setShow(!show);
 
@@ -44,7 +64,46 @@ const Login = () => {
       setIsPasswordError(true);
       return;
     }
+
+    signInWithEmailAndPassword(email, password).then(() => setShowToast(true));
   };
+
+  useEffect(() => {
+    let title = "",
+      desc = "",
+      status: "error" | "loading" | "success" | "info" | "warning" | undefined,
+      duration: number | null = null;
+
+    if (error) {
+      title = "Error.";
+      desc = error.message;
+      status = "error";
+      duration = 5000;
+    } else {
+      title = "Success.";
+      desc = "You're now logged in.";
+      status = "success";
+      duration = 3000;
+    }
+
+    const redirect = () => {
+      setShowToast(false);
+      if (!error) {
+        router.push("/");
+      }
+    };
+
+    if (showToast) {
+      toast({
+        title: title,
+        description: desc,
+        status: status,
+        duration: duration,
+        isClosable: true,
+        onCloseComplete: redirect,
+      });
+    }
+  }, [error, showToast]);
 
   return (
     <Container className="pt-20">
@@ -92,6 +151,7 @@ const Login = () => {
           type="submit"
           size={"lg"}
           className="mt-7"
+          isLoading={loading || googleLoading}
         >
           Log in
         </Button>
@@ -101,7 +161,7 @@ const Login = () => {
         <p className="font-quicksand font-bold text-slate-500">OR</p>
         <Divider className="border-8" />
       </div>
-      <div className="flex flex-col mt-10">
+      <div className="flex flex-col gap-3 mt-10">
         <Button
           leftIcon={
             <Image
@@ -113,8 +173,24 @@ const Login = () => {
           }
           colorScheme="gray"
           size={"lg"}
+          onClick={() => signInWithGoogle().then(() => setShowToast(true))}
         >
           Continue with Google
+        </Button>
+        <Button
+          leftIcon={
+            <Image
+              src={"/image/icons/facebook.png"}
+              width={25}
+              height={25}
+              alt="Google Icon"
+            />
+          }
+          colorScheme="gray"
+          size={"lg"}
+          onClick={() => signInWithFacebook().then(() => setShowToast(true))}
+        >
+          Continue with Facebook
         </Button>
       </div>
 
