@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import ProgressBar from "@badrap/bar-of-progress";
 import { useEffect } from "react";
 import Navbar from "../components/layout/Navbar";
+import ProtectedRoute from "../components/layout/ProtectedRoute";
 
 const progress = new ProgressBar({
   size: 2.5,
@@ -12,6 +13,8 @@ const progress = new ProgressBar({
   className: "bar-of-progress",
   delay: 100,
 });
+
+const authRequired: string[] = [];
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   useEffect(() => {
@@ -48,7 +51,13 @@ function MyApp({ Component, pageProps, router }: AppProps) {
           },
         }}
       >
-        <Component {...pageProps} />
+        {authRequired.includes(router.pathname) ? (
+          <ProtectedRoute>
+            <Component {...pageProps} />
+          </ProtectedRoute>
+        ) : (
+          <Component {...pageProps} />
+        )}
       </motion.div>
     </ChakraProvider>
   );
