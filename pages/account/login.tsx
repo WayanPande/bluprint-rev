@@ -1,7 +1,6 @@
 import { useColorMode } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import React, { useEffect } from "react";
-import Header from "../../components/layout/Header";
 import Login from "../../components/layout/Login";
 import { useThemeStore } from "../../store/theme-store";
 
@@ -23,7 +22,6 @@ const LoginPage: NextPage = () => {
 
   return (
     <>
-      <Header />
       <Login />
     </>
   );

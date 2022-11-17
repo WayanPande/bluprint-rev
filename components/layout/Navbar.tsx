@@ -16,7 +16,7 @@ import MenuModal from "../ui/MenuModal";
 import Link from "next/link";
 import ThemeButton from "../ui/ThemeButton";
 
-const Header = () => {
+const Navbar = () => {
   const searchModal = useDisclosure();
   const menuModal = useDisclosure();
   const [atTopOfPage, setAtTopOfPage] = useState(true);
@@ -148,4 +148,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;

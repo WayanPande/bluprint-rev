@@ -4,6 +4,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import ProgressBar from "@badrap/bar-of-progress";
 import { useEffect } from "react";
+import Navbar from "../components/layout/Navbar";
 
 const progress = new ProgressBar({
   size: 2.5,
@@ -31,24 +32,25 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   };
 
   return (
-    <motion.div
-      key={router.route}
-      initial="pageInitial"
-      animate="pageAnimate"
-      transition={animationTransition}
-      variants={{
-        pageInitial: {
-          opacity: 0,
-        },
-        pageAnimate: {
-          opacity: 1,
-        },
-      }}
-    >
-      <ChakraProvider>
+    <ChakraProvider>
+      <Navbar />
+      <motion.div
+        key={router.route}
+        initial="pageInitial"
+        animate="pageAnimate"
+        transition={animationTransition}
+        variants={{
+          pageInitial: {
+            opacity: 0,
+          },
+          pageAnimate: {
+            opacity: 1,
+          },
+        }}
+      >
         <Component {...pageProps} />
-      </ChakraProvider>
-    </motion.div>
+      </motion.div>
+    </ChakraProvider>
   );
 }
 

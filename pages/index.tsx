@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
 import Footer from "../components/layout/Footer";
-import Header from "../components/layout/Header";
+import Header from "../components/layout/Navbar";
 import Home from "../components/layout/Home";
 import { useThemeStore } from "../store/theme-store";
 
@@ -28,7 +28,6 @@ const HomePage: NextPage = () => {
       <Head>
         <title>Bluprint.id</title>
       </Head>
-      <Header />
       <Home />
       <Footer />
     </>
