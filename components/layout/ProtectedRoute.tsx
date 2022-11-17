@@ -8,10 +8,10 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!user) {
+    if (!user && !loading) {
       router.push("/account/login");
     }
-  }, [router, user]);
+  }, [router, user, loading]);
 
   return <>{user ? children : null}</>;
 };
