@@ -10,13 +10,14 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Tooltip,
   useDisclosure,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import SearchModal from "../ui/SearchModal";
-import { AiOutlineMenu } from "react-icons/ai";
+import { AiFillLike, AiOutlineMenu } from "react-icons/ai";
 import MenuModal from "../ui/MenuModal";
 import Link from "next/link";
 import ThemeButton from "../ui/ThemeButton";
@@ -24,18 +25,19 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../config/firebase";
 import { signOut, User } from "firebase/auth";
 import { BiLogOut } from "react-icons/bi";
+import { useRouter } from "next/router";
+import { MdFavorite } from "react-icons/md";
 
 const Navbar = () => {
   const searchModal = useDisclosure();
   const menuModal = useDisclosure();
   const [atTopOfPage, setAtTopOfPage] = useState(true);
   const [userData, setUserData] = useState<User | null | undefined>();
-
+  const router = useRouter();
   const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
     setUserData(user);
-    console.log(user);
   }, [user]);
 
   useEffect(() => {
@@ -91,7 +93,9 @@ const Navbar = () => {
       } bg-white transition-shadow duration-500 dark:bg-slate-800`}
     >
       <Container
-        className="flex justify-between items-center md:gap-24 lg:gap-52 "
+        className={`flex justify-between items-center md:gap-24 ${
+          userData ? "lg:gap-28" : "lg:gap-52"
+        }`}
         maxW={"container.xl"}
       >
         <IconButton
@@ -125,7 +129,7 @@ const Navbar = () => {
 
         <Card
           size={"sm"}
-          className="w-full cursor-pointer bg-white dark:bg-gray-700"
+          className="w-full cursor-pointer bg-white dark:bg-gray-700 "
           rounded={"lg"}
           onClick={searchModal.onOpen}
           display={{ base: "none", md: "block" }}
@@ -141,8 +145,40 @@ const Navbar = () => {
           </CardBody>
         </Card>
 
-        <div className="hidden md:flex gap-3 md:items-center">
-          <ThemeButton />
+        <div className="hidden md:flex gap-3 md:items-center ">
+          <div className="flex">
+            <ThemeButton />
+
+            {userData && (
+              <>
+                <Tooltip label="Recommendation">
+                  <IconButton
+                    as={Link}
+                    href="/recommendation"
+                    padding="3"
+                    colorScheme="gray"
+                    disabled={router.pathname === "/recommendation"}
+                    variant={"ghost"}
+                    aria-label="recommendation button"
+                    icon={<AiFillLike size={"1.5em"} />}
+                  />
+                </Tooltip>
+
+                <Tooltip label="Favorite">
+                  <IconButton
+                    as={Link}
+                    href="/favorite"
+                    padding="3"
+                    colorScheme="gray"
+                    disabled={router.pathname === "/favorite"}
+                    variant={"ghost"}
+                    aria-label="favorite button"
+                    icon={<MdFavorite size={"1.5em"} />}
+                  />
+                </Tooltip>
+              </>
+            )}
+          </div>
 
           {!userData && (
             <Button
