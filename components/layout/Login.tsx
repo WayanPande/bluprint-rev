@@ -106,7 +106,7 @@ const Login = () => {
   }, [error, showToast]);
 
   return (
-    <Container className="pt-20">
+    <Container className="pt-20 pb-10">
       <div className="flex flex-col gap-4 items-center font-inter ">
         <h1 className="font-bold text-2xl md:text-4xl text-center">
           Log in to your account
