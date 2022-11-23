@@ -1,5 +1,6 @@
 import { Card, CardBody, Heading } from "@chakra-ui/react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface IProps {
@@ -9,23 +10,28 @@ interface IProps {
 
 const HomeCardModel: React.FC<IProps> = ({ type, img }) => {
   return (
-    <Card maxW="sm" cursor={"pointer"} className="group">
-      <CardBody>
-        <div className="lg:h-80 object-contain">
+    <Card
+      as={Link}
+      cursor={"pointer"}
+      className="group w-96 hover:shadow-model transition-all"
+      href={`/model/${type.toLowerCase()}`}
+    >
+      <CardBody className="overflow-visible">
+        <div className="lg:h-80 object-contain overflow-visible">
           <Image
             src={img[0]}
             alt={type}
             width={1024}
             height={1024}
-            className="group-hover:opacity-0 group-hover:hidden rounded-lg"
+            className="w-full h-full group-hover:scale-110 transition-all rounded-lg"
           />
-          <Image
+          {/* <Image
             src={img[1]}
             width={1024}
             height={1024}
             alt={type + "frame"}
             className="opacity-0 hidden group-hover:opacity-100 group-hover:block object-contain w-full h-full rounded-lg"
-          />
+          /> */}
         </div>
         <Heading size="md" mt={6}>
           {type}

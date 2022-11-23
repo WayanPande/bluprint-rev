@@ -8,9 +8,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import HomeCarousel from "../carousel/HomeCarousel";
-import { FaRegSmile } from "react-icons/fa";
-import { AiOutlineGift, AiOutlineHeart } from "react-icons/ai";
-import { IoIosPricetag } from "react-icons/io";
 import SocialMediaList from "../list/SocialMediaList";
 
 const Home = () => {
@@ -73,7 +70,7 @@ const Home = () => {
             type="Original"
             key="Original"
             img={[
-              "/image/original/billar.jpg",
+              "/image/original/billar.png",
               "/image/original/billar-frame.jpg",
             ]}
           />
@@ -91,34 +88,7 @@ const Home = () => {
           <PriceCard type={PRICING_TYPE.hardfile} />
           <PriceCard type={PRICING_TYPE.softfile} />
         </div>
-        {!isScreenWidthMd && <HomeCarousel />}
-        {isScreenWidthMd && (
-          <div className="flex justify-between mt-32">
-            <div className="flex flex-col justify-center items-center gap-3">
-              <FaRegSmile className="text-4xl text-yellow-500" />
-              <h1 className="font-quicksand font-bold ">Art to Spread Joy</h1>
-              <p className="font-quicksand ">We hope we made you smile today</p>
-            </div>
-
-            <div className="flex flex-col justify-center items-center gap-3">
-              <AiOutlineGift className="text-4xl text-green-500" />
-              <h1 className="font-quicksand font-bold ">The Perfect Gift</h1>
-              <p className="font-quicksand ">For all occasions, trust us</p>
-            </div>
-
-            <div className="flex flex-col justify-center items-center gap-3">
-              <IoIosPricetag className="text-4xl text-pink-500" />
-              <h1 className="font-quicksand font-bold ">Dirt Cheap</h1>
-              <p className="font-quicksand ">Cheapest one in the wild</p>
-            </div>
-
-            <div className="flex flex-col justify-center items-center gap-3">
-              <AiOutlineHeart className="text-4xl text-red-500" />
-              <h1 className="font-quicksand font-bold ">Made with Love</h1>
-              <p className="font-quicksand ">All orders are packed with love</p>
-            </div>
-          </div>
-        )}
+        <HomeCarousel />
       </Container>
       {isScreenWidthMd && <SocialMediaList />}
     </>
