@@ -1,11 +1,11 @@
 import React from "react";
 import { Swiper, SwiperSlide, SwiperSlideProps } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
-import Image from "next/image";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useMediaQuery } from "@chakra-ui/react";
+import ModelFrame from "../card/ModelFrame";
 
 interface Iprops {
   type: string;
@@ -32,19 +32,11 @@ const RecommendationCarousel: React.FC<Iprops> = ({ type }) => {
     let data: React.ReactElement<SwiperSlideProps>[] = [];
     for (let i = 0; i < 4; i++) {
       data.push(
-        <SwiperSlide className="flex justify-center items-center">
-          <div className="shadow-lg bg-gradient-to-r from-cyan-500 to-blue-500 h-56 w-56 xl:h-[16.5rem] xl:w-[16.5rem] flex justify-center items-center">
-            <div className="bg-white h-48 w-48 xl:h-[14.5rem] xl:w-[14.5rem] flex justify-center items-center shadow-inner">
-              <div className="shadow-frame flex justify-center p-2 lg:p-4 xl:p-7">
-                <Image
-                  src={imgUrl()}
-                  width={130}
-                  height={130}
-                  alt="rich brian"
-                />
-              </div>
-            </div>
-          </div>
+        <SwiperSlide
+          className="flex justify-center items-center"
+          key={`${type} ${i}`}
+        >
+          <ModelFrame url={imgUrl()} alt={type} frameKey={`${type} ${i}`} />
         </SwiperSlide>
       );
     }
