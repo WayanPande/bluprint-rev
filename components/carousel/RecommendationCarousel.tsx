@@ -36,7 +36,7 @@ const RecommendationCarousel: React.FC<Iprops> = ({ type }) => {
           className="flex justify-center items-center"
           key={`${type} ${i}`}
         >
-          <ModelFrame url={imgUrl()} alt={type} frameKey={`${type} ${i}`} />
+          <ModelFrame url={imgUrl()} alt={type} key={`${type} ${i}`} />
         </SwiperSlide>
       );
     }
