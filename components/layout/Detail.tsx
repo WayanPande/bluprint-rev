@@ -94,8 +94,8 @@ const Detail: React.FC<IProps> = ({ type, name }) => {
           </div>
           <Image
             src={`/image/${type}/${name}.png`}
-            width={1024}
-            height={1024}
+            width={500}
+            height={500}
             alt={`gambar ${name}`}
             className="bg-white w-80 lg:w-[25rem] z-[25] rounded-xl shadow-md"
           />
