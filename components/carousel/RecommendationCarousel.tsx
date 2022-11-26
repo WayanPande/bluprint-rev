@@ -18,13 +18,13 @@ const RecommendationCarousel: React.FC<Iprops> = ({ type }) => {
   const imgUrl = () => {
     switch (type) {
       case "mozaik":
-        return "/image/mozaik/rich-brian.jpg";
+        return "/image/mozaik/rich-brian.png";
       case "flower":
         return "/image/flower/thofu.png";
       case "original":
-        return "/image/original/billar.jpg";
+        return "/image/original/billar.png";
       default:
-        return "/image/mozaik/rich-brian.jpg";
+        return "/image/mozaik/rich-brian.png";
     }
   };
 
