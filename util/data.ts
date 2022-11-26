@@ -7,16 +7,16 @@ export interface ModelData {
 export const mozaikData: ModelData = {
   type: "mozaik",
   img: [
-    "/image/mozaik/rich-brian.jpg",
+    "/image/mozaik/rich-brian.png",
     "/image/mozaik/ade-rai.png",
-    "/image/mozaik/ernest.jpg",
+    "/image/mozaik/ernest.png",
     "/image/mozaik/nunung.png",
-    "/image/mozaik/reza.jpg",
+    "/image/mozaik/reza.png",
     "/image/mozaik/tom.png",
-    "/image/mozaik/bulan.jpg",
+    "/image/mozaik/bulan.png",
     "/image/mozaik/dewa.png",
     "/image/mozaik/junbintang.png",
-    "/image/mozaik/maudy.jpg",
+    "/image/mozaik/maudy.png",
   ],
   imgFrame: "/image/mozaik/rich-brian-frame.jpg",
 };
@@ -40,7 +40,7 @@ export const originalData: ModelData = {
     "/image/original/billar.png",
     "/image/original/andrew.png",
     "/image/original/jedar.png",
-    "/image/original/raffi.jpg",
+    "/image/original/raffi.png",
   ],
   imgFrame: "/image/original/billar-frame.jpg",
 };
