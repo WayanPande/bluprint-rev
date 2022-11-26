@@ -57,7 +57,7 @@ const Home = () => {
             type="Mozaik"
             key="Mozaik"
             img={[
-              "/image/mozaik/rich-brian.jpg",
+              "/image/mozaik/rich-brian.png",
               "/image/mozaik/rich-brian-frame.jpg",
             ]}
           />
