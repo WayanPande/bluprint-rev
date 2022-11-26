@@ -89,7 +89,7 @@ const Login = () => {
     const redirect = () => {
       setShowToast(false);
       if (!error) {
-        router.push("/");
+        router.replace("/");
       }
     };
 
