@@ -1,9 +1,11 @@
+import { useColorMode } from "@chakra-ui/react";
 import { GetStaticPropsContext, NextPage } from "next";
 import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../../components/layout/Footer";
 import Model from "../../components/layout/Model";
+import { useThemeStore } from "../../store/theme-store";
 import {
   flowerData,
   ModelData,
@@ -16,6 +18,21 @@ interface IParams extends ParsedUrlQuery {
 }
 
 const ModelPage: NextPage<ModelData> = ({ type, img, imgFrame }) => {
+  const darkMode = useThemeStore((state) => state.darkMode);
+  const { setColorMode } = useColorMode();
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+
+    if (darkMode) {
+      root.classList.add("dark");
+      setColorMode("dark");
+    } else {
+      root.classList.remove("dark");
+      setColorMode("light");
+    }
+  }, [darkMode]);
+
   return (
     <>
       <Head>
