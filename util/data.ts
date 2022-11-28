@@ -39,8 +39,10 @@ export const originalData: ModelData = {
   img: [
     "/image/original/billar.png",
     "/image/original/andrew.png",
+    "/image/original/raffi.png",
     "/image/original/jedar.png",
     "/image/original/raffi.png",
+    "/image/original/andrew.png",
   ],
   imgFrame: "/image/original/billar-frame.jpg",
 };
