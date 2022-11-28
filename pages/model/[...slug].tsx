@@ -5,6 +5,7 @@ import { ParsedUrlQuery } from "querystring";
 import React, { useEffect } from "react";
 import Detail from "../../components/layout/Detail";
 import Footer from "../../components/layout/Footer";
+import Navbar from "../../components/layout/Navbar";
 import { useThemeStore } from "../../store/theme-store";
 import { getImageFiles } from "../../util/detail-model";
 import { removeExtension } from "../../util/my-util";
@@ -39,6 +40,7 @@ const ModelDetailPage: NextPage<IParams> = ({ slug }) => {
       <Head>
         <title>Bluprint.id</title>
       </Head>
+      <Navbar />
       <Detail name={slug[1]} type={slug[0]} />
       <Footer />
     </>

@@ -3,6 +3,7 @@ import Head from "next/head";
 import React, { useEffect } from "react";
 import Favorite from "../../components/layout/Favorite";
 import Footer from "../../components/layout/Footer";
+import Navbar from "../../components/layout/Navbar";
 import { useThemeStore } from "../../store/theme-store";
 
 const FavoritePage = () => {
@@ -26,6 +27,7 @@ const FavoritePage = () => {
       <Head>
         <title>Bluprint.id</title>
       </Head>
+      <Navbar />
       <Favorite />
       <Footer />
     </>

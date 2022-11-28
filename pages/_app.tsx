@@ -4,7 +4,6 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import ProgressBar from "@badrap/bar-of-progress";
 import { useEffect } from "react";
-import Navbar from "../components/layout/Navbar";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
 
 const progress = new ProgressBar({
@@ -36,7 +35,6 @@ function MyApp({ Component, pageProps, router }: AppProps) {
 
   return (
     <ChakraProvider>
-      <Navbar />
       <motion.div
         key={router.route}
         initial="pageInitial"

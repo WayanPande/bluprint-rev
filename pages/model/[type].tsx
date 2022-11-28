@@ -5,6 +5,7 @@ import { ParsedUrlQuery } from "querystring";
 import React, { useEffect } from "react";
 import Footer from "../../components/layout/Footer";
 import Model from "../../components/layout/Model";
+import Navbar from "../../components/layout/Navbar";
 import { useThemeStore } from "../../store/theme-store";
 import {
   flowerData,
@@ -38,6 +39,7 @@ const ModelPage: NextPage<ModelData> = ({ type, img, imgFrame }) => {
       <Head>
         <title>Bluprint.id</title>
       </Head>
+      <Navbar />
       <Model type={type} img={img} imgFrame={imgFrame} />
       <Footer />
     </>

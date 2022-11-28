@@ -4,6 +4,7 @@ import Head from "next/head";
 import { useEffect } from "react";
 import Footer from "../components/layout/Footer";
 import Home from "../components/layout/Home";
+import Navbar from "../components/layout/Navbar";
 import { useThemeStore } from "../store/theme-store";
 
 const HomePage: NextPage = () => {
@@ -27,6 +28,7 @@ const HomePage: NextPage = () => {
       <Head>
         <title>Bluprint.id</title>
       </Head>
+      <Navbar />
       <Home />
       <Footer />
     </>

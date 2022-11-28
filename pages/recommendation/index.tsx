@@ -2,6 +2,7 @@ import { useColorMode } from "@chakra-ui/react";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import Footer from "../../components/layout/Footer";
+import Navbar from "../../components/layout/Navbar";
 import Recommendation from "../../components/layout/Recommendation";
 import { useThemeStore } from "../../store/theme-store";
 
@@ -26,6 +27,7 @@ const RecommendationPage = () => {
       <Head>
         <title>Bluprint.id</title>
       </Head>
+      <Navbar />
       <Recommendation />
       <Footer />
     </>
