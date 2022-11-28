@@ -44,7 +44,10 @@ const Home = () => {
               loop
               className="absolute left-1/2 right-1/2 -translate-x-1/2 shadow-sm"
             >
-              <source src="/video/DeniSumargo.mp4" type="video/mp4" />
+              <source
+                src="http://stickymochi.my.id/Denisumargo.mp4"
+                type="video/mp4"
+              />
             </video>
           </div>
         )}
