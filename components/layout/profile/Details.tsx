@@ -52,7 +52,7 @@ const Details = () => {
   }, [updating, errorUpdating]);
 
   return (
-    <div className="flex flex-col justify-between gap-20 lg:w-3/4">
+    <div className="flex flex-col justify-between gap-20 lg:w-3/5">
       <div className="flex flex-col gap-3 mt-10">
         <h1 className="text-xl font-bold">Account Details</h1>
         <p>You can update your account details here accordingly</p>
