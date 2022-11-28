@@ -8,6 +8,7 @@ import {
   Kbd,
   Menu,
   MenuButton,
+  MenuGroup,
   MenuItem,
   MenuList,
   Tooltip,
@@ -206,13 +207,17 @@ const Navbar = () => {
               />
 
               <MenuList className="font-inter">
-                <MenuItem>My Account</MenuItem>
-                <MenuItem onClick={() => signOut(auth)}>
-                  <p className="text-red-500 font-bold flex items-center gap-3">
-                    <BiLogOut className="text-xl" />
-                    Log out
-                  </p>
-                </MenuItem>
+                <MenuGroup title={userData?.displayName ?? ""}>
+                  <MenuItem as={Link} href="/account/overview">
+                    My Account
+                  </MenuItem>
+                  <MenuItem onClick={() => signOut(auth)}>
+                    <p className="text-red-500 font-bold flex items-center gap-3">
+                      <BiLogOut className="text-xl" />
+                      Log out
+                    </p>
+                  </MenuItem>
+                </MenuGroup>
               </MenuList>
             </Menu>
           )}

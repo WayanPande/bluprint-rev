@@ -13,7 +13,11 @@ const progress = new ProgressBar({
   delay: 100,
 });
 
-const authRequired: string[] = ["/recommendation", "/favorite"];
+const authRequired: string[] = [
+  "/recommendation",
+  "/favorite",
+  "/account/[slug]",
+];
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   useEffect(() => {
