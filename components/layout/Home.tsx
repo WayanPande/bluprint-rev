@@ -23,11 +23,10 @@ const Home = () => {
           </h1>
           <Image
             src="/image/hero.png"
-            width={3000}
-            height={3000}
+            width={1024}
+            height={1024}
             className="w-full md:w-10/12"
             alt="raffi nagita original"
-            priority
           />
         </section>
 
