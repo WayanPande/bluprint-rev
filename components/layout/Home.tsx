@@ -44,7 +44,7 @@ const Home = () => {
               className="absolute left-1/2 right-1/2 -translate-x-1/2 shadow-sm"
             >
               <source
-                src="http://stickymochi.my.id/Denisumargo.mp4"
+                src="https://stickymochi.my.id/Denisumargo.mp4"
                 type="video/mp4"
               />
             </video>
