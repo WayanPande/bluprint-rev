@@ -1,0 +1,39 @@
+[
+  {
+    "type": "Mozaik",
+    "url": "/model/mozaik",
+    "items": [
+      { "name": "Rich Brian", "url": "/model/mozaik/rich-brian" },
+      { "name": "Ade Rai", "url": "/model/mozaik/ade-rai" },
+      { "name": "Ernest Prakasa", "url": "/model/mozaik/ernest" },
+      { "name": "Nunung", "url": "/model/mozaik/nunung" },
+      { "name": "Reza Rahadian", "url": "/model/mozaik/reza" },
+      { "name": "Tom Holland", "url": "/model/mozaik/tom" },
+      { "name": "Bulan Sutena", "url": "/model/mozaik/bulan" },
+      { "name": "Jun Bintang", "url": "/model/mozaik/junbintang" },
+      { "name": "Maudy Ayunda", "url": "/model/mozaik/maudy" }
+    ]
+  },
+  {
+    "type": "Original",
+    "url": "/model/original",
+    "items": [
+      { "name": "Billar", "url": "/model/original/billar" },
+      { "name": "Andrew", "url": "/model/original/andrew" },
+      { "name": "Raffi Nagita", "url": "/model/original/raffi" },
+      { "name": "Jedar", "url": "/model/original/jedar" }
+    ]
+  },
+  {
+    "type": "Flower",
+    "url": "/model/flower",
+    "items": [
+      { "name": "Thariq Fuji", "url": "/model/flower/thofu" },
+      { "name": "Desta Family", "url": "/model/flower/Desta" },
+      { "name": "Habibie Ainun", "url": "/model/flower/Habiebie" },
+      { "name": "Rizky Mahalini", "url": "/model/flower/IkyLini" },
+      { "name": "Podkesmas", "url": "/model/flower/podkesmas" },
+      { "name": "Teuku Ria", "url": "/model/flower/Ria" }
+    ]
+  }
+]
