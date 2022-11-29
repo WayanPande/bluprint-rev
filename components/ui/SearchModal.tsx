@@ -9,6 +9,7 @@ import {
   ModalHeader,
   Divider,
   useControllableState,
+  Collapse,
 } from "@chakra-ui/react";
 import { HiOutlineSearch } from "react-icons/hi";
 import Link from "next/link";
@@ -154,7 +155,10 @@ const SearchModal: React.FC<Modalprops> = ({
             </Kbd>
           </div>
         </ModalHeader>
-        {value.length > 0 && filteredData.length !== 0 && (
+        <Collapse
+          in={value.length > 0 && filteredData.length !== 0}
+          animateOpacity
+        >
           <ModalBody className="flex flex-col gap-4">
             <Divider />
             <div>
@@ -245,7 +249,7 @@ const SearchModal: React.FC<Modalprops> = ({
               </ul>
             </div>
           </ModalBody>
-        )}
+        </Collapse>
       </ModalContent>
     </Modal>
   );
