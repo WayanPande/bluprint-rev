@@ -17,9 +17,11 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../config/firebase";
 import { BiLogOut } from "react-icons/bi";
 import { signOut } from "firebase/auth";
+import { useRouter } from "next/router";
 
 const MenuModal: React.FC<Modalprops> = ({ isOpen = false, closeHandler }) => {
   const [user, loading, error] = useAuthState(auth);
+  const router = useRouter();
 
   const logoutHandler = () => {
     signOut(auth);
@@ -43,10 +45,12 @@ const MenuModal: React.FC<Modalprops> = ({ isOpen = false, closeHandler }) => {
           <div className="flex flex-col justify-center gap-3">
             <Button
               colorScheme="facebook"
-              variant="ghost"
+              variant={router.pathname === "/model/[type]" ? "solid" : "ghost"}
               fontWeight={"bold"}
               justifyContent={"flex-start"}
               className={"font-quicksand"}
+              as={Link}
+              href="/model/mozaik"
             >
               All template
             </Button>
@@ -65,17 +69,23 @@ const MenuModal: React.FC<Modalprops> = ({ isOpen = false, closeHandler }) => {
               <>
                 <Button
                   colorScheme="facebook"
-                  variant="ghost"
+                  variant={
+                    router.pathname === "/account/[slug]" ? "solid" : "ghost"
+                  }
                   fontWeight={"bold"}
                   justifyContent={"flex-start"}
                   className={"font-quicksand"}
+                  as={Link}
+                  href="/account/overview"
                 >
                   Profile
                 </Button>
                 <hr />
                 <Button
                   colorScheme="facebook"
-                  variant="ghost"
+                  variant={
+                    router.pathname === "/recommendation" ? "solid" : "ghost"
+                  }
                   fontWeight={"bold"}
                   justifyContent={"flex-start"}
                   className={"font-quicksand"}
@@ -88,10 +98,12 @@ const MenuModal: React.FC<Modalprops> = ({ isOpen = false, closeHandler }) => {
                 <hr />
                 <Button
                   colorScheme="facebook"
-                  variant="ghost"
+                  variant={router.pathname === "/favorite" ? "solid" : "ghost"}
                   fontWeight={"bold"}
                   justifyContent={"flex-start"}
                   className={"font-quicksand"}
+                  as={Link}
+                  href="/favorite"
                 >
                   Favorite
                 </Button>
@@ -102,7 +114,9 @@ const MenuModal: React.FC<Modalprops> = ({ isOpen = false, closeHandler }) => {
             {!user && (
               <Button
                 colorScheme="facebook"
-                variant="ghost"
+                variant={
+                  router.pathname === "/account/login" ? "solid" : "ghost"
+                }
                 fontWeight={"bold"}
                 justifyContent={"flex-start"}
                 className={"font-quicksand"}
