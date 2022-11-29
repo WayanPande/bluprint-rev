@@ -165,7 +165,9 @@ const SearchModal: React.FC<Modalprops> = ({
                       <Link href={item.url}>
                         <li
                           className={`${
-                            cursor === i ? "bg-blue-400" : "bg-gray-100"
+                            cursor === i
+                              ? "bg-blue-400 dark:bg-blue-600"
+                              : "bg-gray-100 dark:bg-slate-500"
                           } px-4 py-2 rounded-lg font-bold min-h-[4rem] flex items-center justify-between`}
                           onMouseEnter={() => mouseEnterHandler(i)}
                         >
@@ -177,7 +179,9 @@ const SearchModal: React.FC<Modalprops> = ({
                             <IoDocumentOutline
                               size={25}
                               className={`${
-                                cursor === i ? "text-white/80" : "text-black/30"
+                                cursor === i
+                                  ? "text-white/80"
+                                  : "text-black/30 dark:text-white/50"
                               }`}
                             />
                             <HighlightedText
@@ -189,7 +193,9 @@ const SearchModal: React.FC<Modalprops> = ({
                           <AiOutlineEnter
                             size={20}
                             className={`${
-                              cursor === i ? "text-white/80" : "text-black/30"
+                              cursor === i
+                                ? "text-white/80"
+                                : "text-black/30 dark:text-white/50"
                             }`}
                           />
                         </li>
@@ -199,7 +205,9 @@ const SearchModal: React.FC<Modalprops> = ({
                       <Link href={item.url}>
                         <li
                           className={`${
-                            cursor === i ? "bg-blue-400" : "bg-gray-100"
+                            cursor === i
+                              ? "bg-blue-400 dark:bg-blue-600"
+                              : "bg-gray-100 dark:bg-slate-500"
                           } px-4 py-2 rounded-lg font-bold min-h-[4rem] flex items-center justify-between`}
                           onMouseEnter={() => mouseEnterHandler(i)}
                         >
@@ -211,7 +219,9 @@ const SearchModal: React.FC<Modalprops> = ({
                             <CgHashtag
                               size={25}
                               className={`${
-                                cursor === i ? "text-white/80" : "text-black/30"
+                                cursor === i
+                                  ? "text-white/80"
+                                  : "text-black/30 dark:text-white/50"
                               }`}
                             />
                             <div>
@@ -219,7 +229,7 @@ const SearchModal: React.FC<Modalprops> = ({
                                 className={`text-xs ${
                                   cursor === i
                                     ? "text-white/80"
-                                    : "text-black/40"
+                                    : "text-black/40 dark:text-white/50"
                                 } capitalize`}
                               >
                                 {item.type}
@@ -234,7 +244,9 @@ const SearchModal: React.FC<Modalprops> = ({
                           <AiOutlineEnter
                             size={20}
                             className={`${
-                              cursor === i ? "text-white/80" : "text-black/30"
+                              cursor === i
+                                ? "text-white/80"
+                                : "text-black/30 dark:text-white/50"
                             }`}
                           />
                         </li>
