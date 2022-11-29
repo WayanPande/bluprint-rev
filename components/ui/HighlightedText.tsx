@@ -26,7 +26,7 @@ const HighlightedText: React.FC<IProps> = ({
             <mark
               className={` ${
                 hover
-                  ? "bg-blue-400 dark:bg-blue-600 text-white underline underline-offset-2"
+                  ? "bg-blue-400 dark:bg-blue-600 text-whi underline underline-offset-2"
                   : "bg-transparent text-blue-400"
               }`}
               key={i}
