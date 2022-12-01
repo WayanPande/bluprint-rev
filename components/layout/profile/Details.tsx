@@ -96,6 +96,7 @@ const Details = () => {
             onClick={updateProfileHandler}
             isLoading={updating}
             loadingText="Updating Profile"
+            id="save_btn"
           >
             Save
           </Button>
