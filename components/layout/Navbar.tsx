@@ -154,6 +154,7 @@ const Navbar = () => {
               <>
                 <Tooltip label="Recommendation">
                   <IconButton
+                    id="recommendation"
                     as={Link}
                     href="/recommendation"
                     padding="3"
@@ -207,7 +208,7 @@ const Navbar = () => {
               />
 
               <MenuList className="font-inter">
-                <MenuGroup title={userData?.displayName ?? ""}>
+                <MenuGroup title={userData?.displayName ?? ""} id="popup_menu">
                   <MenuItem as={Link} href="/account/overview">
                     My Account
                   </MenuItem>

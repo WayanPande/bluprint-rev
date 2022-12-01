@@ -18,9 +18,13 @@ const Details = () => {
   const [updateProfile, updating, errorUpdating] = useUpdateProfile(auth);
   const toast = useToast();
   const inputFile = useRef<null | HTMLInputElement>(null);
+  const [isClicked, setIsClicked] = useControllableState({
+    defaultValue: false,
+  });
 
   const updateProfileHandler = async () => {
     await updateProfile({ displayName: name });
+    setIsClicked(!isClicked);
   };
 
   const handleUploadImg = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,7 +100,7 @@ const Details = () => {
             onClick={updateProfileHandler}
             isLoading={updating}
             loadingText="Updating Profile"
-            id="save_btn"
+            id={isClicked ? "save_btn" : undefined}
           >
             Save
           </Button>

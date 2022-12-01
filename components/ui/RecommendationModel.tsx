@@ -28,6 +28,7 @@ const RecommendationModel: React.FC<Iprops> = ({ title, desc }) => {
           className="flex items-center w-fit"
           colorScheme={"facebook"}
           rightIcon={<IoIosArrowDroprightCircle className="text-[1.2em]" />}
+          id={title === "Mozaik" ? "pesan" : ""}
         >
           Pesan
         </Button>

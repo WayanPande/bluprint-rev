@@ -23,6 +23,10 @@ const Detail: React.FC<IProps> = ({ type, name }) => {
     defaultValue: false,
   });
 
+  const [isClicked, setIsClicked] = useControllableState({
+    defaultValue: false,
+  });
+
   const router = useRouter();
 
   const closeButtonHandler = () => {
@@ -58,13 +62,17 @@ const Detail: React.FC<IProps> = ({ type, name }) => {
         <div className="h-full relative z-[25] flex flex-col items-center lg:flex-row-reverse lg:justify-evenly w-full">
           <div className="flex gap-3 justify-center lg:items-start items-center flex-col pb-10 text-white lg:gap-5 lg:w-1/2">
             <div className="flex justify-between lg:w-full">
-              <h1 className="text-2xl lg:text-4xl font-bold capitalize">
+              <h1
+                className="text-2xl lg:text-4xl font-bold capitalize"
+                id={type}
+              >
                 {type}
               </h1>
               <Tooltip label="Add to favorite" aria-label="A tooltip">
                 <button
                   className="p-3 bg-white/30 rounded-full text-white hidden lg:block hover:scale-110 hover:shadow-md active:shadow-lg transition-transform active:scale-125"
                   onClick={() => setIsFavorite(!isFavorite)}
+                  id={isFavorite ? "favorite_btn" : undefined}
                 >
                   {isFavorite ? (
                     <AiFillHeart size={25} />
@@ -88,6 +96,8 @@ const Detail: React.FC<IProps> = ({ type, name }) => {
               colorScheme={"facebook"}
               size={`${isScreenWidthMd ? "md" : "sm"}`}
               className="lg:w-full"
+              id={type === "mozaik" && isClicked ? "pesan" : undefined}
+              onClick={() => setIsClicked(!isClicked)}
             >
               Pesan
             </Button>

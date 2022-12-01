@@ -14,7 +14,10 @@ const Recommendation = () => {
           alt="logo bluprint"
           className="w-16 h-16"
         />
-        <h1 className="font-bold text-2xl md:text-3xl font-inter dark:text-white">
+        <h1
+          className="font-bold text-2xl md:text-3xl font-inter dark:text-white"
+          id="recommendation_page"
+        >
           Recommendation.
         </h1>
         <p className="font-quicksand font-bold text-center text-sm">
