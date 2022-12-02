@@ -1,4 +1,10 @@
-import { Button, Container, Select, useMediaQuery } from "@chakra-ui/react";
+import {
+  Button,
+  Container,
+  Select,
+  useControllableState,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
@@ -10,6 +16,9 @@ import HomeCarousel from "../carousel/HomeCarousel";
 const Model: React.FC<ModelData> = ({ type, img, imgFrame }) => {
   const router = useRouter();
   const [isScreenWidthMd] = useMediaQuery("(min-width: 1024px)");
+  const [isClicked, setIsClicked] = useControllableState({
+    defaultValue: false,
+  });
 
   const selectChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     router.push("/model/" + e.target.value);
@@ -72,6 +81,8 @@ const Model: React.FC<ModelData> = ({ type, img, imgFrame }) => {
             colorScheme={"facebook"}
             rightIcon={<IoIosArrowDroprightCircle className="text-[1.2em]" />}
             size={`${isScreenWidthMd ? "lg" : "sm"}`}
+            id={type === "mozaik" && isClicked ? "pesan" : undefined}
+            onClick={() => setIsClicked(!isClicked)}
           >
             Pesan
           </Button>
