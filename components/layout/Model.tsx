@@ -94,13 +94,13 @@ const Model: React.FC<ModelData> = ({ type, img, imgFrame }) => {
           width={1024}
           height={1024}
           alt={`${type} frame`}
-          className="rounded-lg shadow-md h-56 w-56 object-cover xl:h-[25rem] xl:w-[25rem]"
+          className="rounded-lg shadow-md h-56 w-56 object-cover md:h-[18rem] md:w-[18rem] lg:h-[20rem] lg:w-[20rem] xl:h-[25rem] xl:w-[25rem]"
         />
-        <div className="flex flex-col my-20 gap-5 mx-5 md:w-1/3">
-          <h1 className="font-bold md:text-2xl">
+        <div className="flex flex-col my-20 gap-5 mx-5 md:w-1/2 xl:w-1/3">
+          <h1 className="font-bold md:text-base lg:text-2xl">
             Model juga dapat disimpan kedalam bingkai 🖼️
           </h1>
-          <p className="md:text-xl">
+          <p className="md:text-base lg:text-xl">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
             Reprehenderit doloribus beatae voluptatem quisquam aut magni unde
             cum adipisci dolore quaerat!

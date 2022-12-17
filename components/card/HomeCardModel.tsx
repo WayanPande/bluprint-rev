@@ -13,11 +13,11 @@ const HomeCardModel: React.FC<IProps> = ({ type, img }) => {
     <Card
       as={Link}
       cursor={"pointer"}
-      className="group w-96 hover:shadow-model transition-all"
+      className="group md:w-56 lg:w-72 xl:w-96 hover:shadow-model transition-all"
       href={`/model/${type.toLowerCase()}`}
     >
       <CardBody className="overflow-visible">
-        <div className="lg:h-80 object-contain overflow-visible">
+        <div className="lg:h-64 xl:h-80 object-contain overflow-visible">
           <Image
             src={img[0]}
             alt={type}
@@ -25,13 +25,6 @@ const HomeCardModel: React.FC<IProps> = ({ type, img }) => {
             height={1024}
             className="w-full h-full group-hover:scale-110 transition-all rounded-lg"
           />
-          {/* <Image
-            src={img[1]}
-            width={1024}
-            height={1024}
-            alt={type + "frame"}
-            className="opacity-0 hidden group-hover:opacity-100 group-hover:block object-contain w-full h-full rounded-lg"
-          /> */}
         </div>
         <Heading size="md" mt={6}>
           {type}
