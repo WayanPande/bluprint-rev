@@ -1,7 +1,6 @@
 import {
   Button,
   Container,
-  Divider,
   FormControl,
   FormErrorMessage,
   Input,
@@ -9,10 +8,9 @@ import {
   InputRightElement,
   useToast,
 } from "@chakra-ui/react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../../config/firebase";
 
@@ -141,7 +139,7 @@ const Register = () => {
     const redirect = () => {
       setShowToast(false);
       if (!error) {
-        router.push("/account/login");
+        router.replace("/");
       }
     };
 
