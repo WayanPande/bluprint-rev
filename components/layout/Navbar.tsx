@@ -13,6 +13,7 @@ import {
   MenuList,
   Tooltip,
   useDisclosure,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -36,6 +37,7 @@ const Navbar = () => {
   const [userData, setUserData] = useState<User | null | undefined>();
   const router = useRouter();
   const [user, loading, error] = useAuthState(auth);
+  const [isScreenWidthMd] = useMediaQuery("(min-width: 768px)");
 
   useEffect(() => {
     setUserData(user);
@@ -94,8 +96,8 @@ const Navbar = () => {
       } bg-white transition-shadow duration-500 dark:bg-slate-800`}
     >
       <Container
-        className={`flex justify-between items-center md:gap-24 ${
-          userData ? "lg:gap-28" : "lg:gap-52"
+        className={`flex justify-between items-center md:gap-14 ${
+          userData ? "lg:gap-28" : "lg:gap-28 xl:gap-52"
         }`}
         maxW={"container.xl"}
       >
@@ -107,7 +109,10 @@ const Navbar = () => {
           aria-label="Open menu"
         />
 
-        <Link href={"/"} className="flex items-center cursor-pointer gap-2">
+        <Link
+          href={"/"}
+          className="flex items-center cursor-pointer gap-2 md:gap-0"
+        >
           <Image
             src="/favicon.png"
             width={50}
@@ -115,7 +120,7 @@ const Navbar = () => {
             alt="logo bluprint"
             className="w-10 h-10"
           />
-          <h1 className="font-bold text-2xl md:text-3xl font-inter dark:text-white">
+          <h1 className="font-bold text-2xl lg:text-3xl font-inter dark:text-white">
             Bluprint.
           </h1>
         </Link>
@@ -185,10 +190,12 @@ const Navbar = () => {
             <Button
               colorScheme={"facebook"}
               className="font-quicksand hidden dark:bg-white dark:text-gray-800 dark:hover:bg-gray-300"
-              paddingInline={"5"}
+              paddingInline={isScreenWidthMd ? "4" : "5"}
+              paddingBlock={isScreenWidthMd ? "5" : "6"}
               fontWeight={"bold"}
               as={Link}
               href="/account/login"
+              size={isScreenWidthMd ? "sm" : "md"}
             >
               Login
             </Button>
