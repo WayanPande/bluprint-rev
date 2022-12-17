@@ -1,6 +1,7 @@
 import { useColorMode } from "@chakra-ui/react";
 import { NextPage } from "next";
 import React, { useEffect } from "react";
+import Navbar from "../../components/layout/Navbar";
 import Register from "../../components/layout/Register";
 import { useThemeStore } from "../../store/theme-store";
 
@@ -22,6 +23,7 @@ const RegisterPage: NextPage = () => {
 
   return (
     <>
+      <Navbar />
       <Register />
     </>
   );
