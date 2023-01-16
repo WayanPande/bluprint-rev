@@ -1,5 +1,6 @@
 import { Button, Container, Select, useMediaQuery } from "@chakra-ui/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
@@ -72,6 +73,8 @@ const Model: React.FC<ModelData> = ({ type, img, imgFrame }) => {
             colorScheme={"facebook"}
             rightIcon={<IoIosArrowDroprightCircle className="text-[1.2em]" />}
             size={`${isScreenWidthMd ? "lg" : "sm"}`}
+            as={Link}
+            href="/checkout"
           >
             Pesan
           </Button>
@@ -99,6 +102,8 @@ const Model: React.FC<ModelData> = ({ type, img, imgFrame }) => {
             colorScheme={"facebook"}
             rightIcon={<IoIosArrowDroprightCircle className="text-[1.2em]" />}
             size={`${isScreenWidthMd ? "lg" : "sm"}`}
+            as={Link}
+            href="/checkout"
           >
             Pesan
           </Button>

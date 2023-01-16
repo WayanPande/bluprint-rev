@@ -1,4 +1,5 @@
 import { Button } from "@chakra-ui/react";
+import Link from "next/link";
 import React from "react";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import RecommendationCarousel from "../carousel/RecommendationCarousel";
@@ -28,6 +29,8 @@ const RecommendationModel: React.FC<Iprops> = ({ title, desc }) => {
           className="flex items-center w-fit"
           colorScheme={"facebook"}
           rightIcon={<IoIosArrowDroprightCircle className="text-[1.2em]" />}
+          as={Link}
+          href="/checkout"
         >
           Pesan
         </Button>

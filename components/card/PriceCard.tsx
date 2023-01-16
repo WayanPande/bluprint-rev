@@ -1,4 +1,5 @@
 import { Button, Card, CardBody } from "@chakra-ui/react";
+import Link from "next/link";
 import React from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 
@@ -108,7 +109,13 @@ const PriceCard: React.FC<IProps> = ({ type }) => {
           </p>
         </div>
         <div className="flex flex-col gap-3 mt-6">{benefit}</div>
-        <Button variant={"solid"} colorScheme="facebook" className="mt-5">
+        <Button
+          variant={"solid"}
+          colorScheme="facebook"
+          className="mt-5"
+          as={Link}
+          href="/checkout"
+        >
           Pesan sekarang
         </Button>
       </CardBody>
