@@ -17,6 +17,7 @@ const authRequired: string[] = [
   "/recommendation",
   "/favorite",
   "/account/[slug]",
+  "/checkout",
 ];
 
 function MyApp({ Component, pageProps, router }: AppProps) {
