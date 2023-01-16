@@ -10,6 +10,7 @@ const Order = () => {
           deliveries.
         </p>
       </div>
+      <div></div>
     </div>
   );
 };
