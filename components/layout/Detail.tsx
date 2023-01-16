@@ -6,6 +6,7 @@ import {
   useMediaQuery,
 } from "@chakra-ui/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { AiFillHeart, AiOutlineClose, AiOutlineHeart } from "react-icons/ai";
@@ -36,7 +37,7 @@ const Detail: React.FC<IProps> = ({ type, name }) => {
     >
       <div className="mx-10 flex flex-col items-center h-fit w-full  lg:justify-evenly lg:gap-32">
         <div className="absolute bg-gradient-to-br from-blue-600 to-cyan-400 rounded-lg w-11/12 h-[28rem] lg:h-[100vh] lg:rounded-2xl" />
-        <div className="flex justify-between w-full items-center px-3 pt-3 relative z-[25]">
+        <div className="flex justify-between w-full items-center md:px-10 md:pt-5 px-3 pt-3 relative z-[25]">
           <button
             onClick={closeButtonHandler}
             className="p-3 bg-white/30 rounded-full text-white hover:scale-110 hover:shadow-md active:shadow-lg transition-transform active:scale-125"
@@ -55,10 +56,10 @@ const Detail: React.FC<IProps> = ({ type, name }) => {
             )}
           </button>
         </div>
-        <div className="h-full relative z-[25] flex flex-col items-center lg:flex-row-reverse lg:justify-evenly w-full">
-          <div className="flex gap-3 justify-center lg:items-start items-center flex-col pb-10 text-white lg:gap-5 lg:w-1/2">
+        <div className="h-full lg:px-10 xl:px-0 relative z-[25] flex flex-col items-center lg:flex-row-reverse lg:justify-evenly w-full">
+          <div className="flex gap-3 justify-center lg:items-start items-center flex-col pb-10 text-white lg:gap-3 xl:gap-5 lg:w-1/2">
             <div className="flex justify-between lg:w-full">
-              <h1 className="text-2xl lg:text-4xl font-bold capitalize">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold capitalize">
                 {type}
               </h1>
               <Tooltip label="Add to favorite" aria-label="A tooltip">
@@ -74,13 +75,19 @@ const Detail: React.FC<IProps> = ({ type, name }) => {
                 </button>
               </Tooltip>
             </div>
-            <h2 className="text-xl lg:text-3xl font-bold capitalize">{name}</h2>
-            <p className="text-xs lg:text-base text-white/70">Starting at</p>
-            <p className="text-xl lg:text-3xl font-bold">
-              Rp. 50.000{" "}
-              <span className="text-xs lg:text-base text-white/70">/model</span>
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold capitalize">
+              {name}
+            </h2>
+            <p className="text-xs md:text-sm lg:text-base text-white/70">
+              Starting at
             </p>
-            <p className="text-xs lg:text-xl lg:text-start text-center">
+            <p className="text-xl md:text-2xl lg:text-3xl font-bold">
+              Rp. 50.000{" "}
+              <span className="text-xs md:text-sm lg:text-base text-white/70">
+                /model
+              </span>
+            </p>
+            <p className="text-xs md:text-base lg:text-xl lg:text-start text-center">
               Kumpulkan semua cerita dan kenanganmu terhadap seseorang dalam
               satu hadiah.
             </p>
@@ -88,6 +95,8 @@ const Detail: React.FC<IProps> = ({ type, name }) => {
               colorScheme={"facebook"}
               size={`${isScreenWidthMd ? "md" : "sm"}`}
               className="lg:w-full"
+              as={Link}
+              href="/checkout"
             >
               Pesan
             </Button>
@@ -97,7 +106,7 @@ const Detail: React.FC<IProps> = ({ type, name }) => {
             width={500}
             height={500}
             alt={`gambar ${name}`}
-            className="bg-white w-80 lg:w-[25rem] z-[25] rounded-xl shadow-md"
+            className="bg-white w-80 lg:w-[22rem] xl:w-[25rem] z-[25] rounded-xl shadow-md"
           />
         </div>
       </div>
@@ -125,6 +134,8 @@ const Detail: React.FC<IProps> = ({ type, name }) => {
             colorScheme={"facebook"}
             rightIcon={<IoIosArrowDroprightCircle className="text-[1.2em]" />}
             size={`${isScreenWidthMd ? "lg" : "sm"}`}
+            as={Link}
+            href="/checkout"
           >
             Pesan
           </Button>
@@ -132,7 +143,7 @@ const Detail: React.FC<IProps> = ({ type, name }) => {
       </div>
       <div className="flex flex-col w-full items-center">
         <h1 className="font-bold text-2xl lg:text-4xl">Similar art's</h1>
-        <div className="w-full lg:w-full  flex items-center justify-center mt-5 lg:my-20">
+        <div className="w-full lg:w-full  flex items-center justify-center mt-5 xl:my-20">
           <SimilarArtsCarousel type={type} />
         </div>
       </div>
