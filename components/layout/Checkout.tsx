@@ -1,7 +1,5 @@
 import {
   Button,
-  Card,
-  CardBody,
   Container,
   Input,
   Modal,
@@ -20,22 +18,36 @@ import {
   useRadioGroup,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { FaCloudUploadAlt } from "react-icons/fa";
 import { HiOutlineSearch } from "react-icons/hi";
 import { RiSecurePaymentFill } from "react-icons/ri";
+import { useDropArea } from "react-use";
 import CheckoutModelCard from "../card/CheckoutModelCard";
 
 const Checkout = () => {
   const [pembayaran, setPembayaran] = useState("1");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
+  const inputFilePrimary = useRef<HTMLInputElement | null>(null);
+  const inputFileSecondary = useRef<HTMLInputElement | null>(null);
 
   const { value, getRadioProps, getRootProps } = useRadioGroup({
     defaultValue: "1",
     onChange: () => {},
   });
 
-  console.log(typeof getRootProps());
+  const [dropAreaBondPrimary, dropAreaStatePrimary] = useDropArea({
+    onFiles: (files) => console.log("files", files),
+    onUri: (uri) => console.log("uri", uri),
+    onText: (text) => console.log("text", text),
+  });
+
+  const [dropAreaBondSecondary, dropAreaStateSecondary] = useDropArea({
+    onFiles: (files) => console.log("files", files),
+    onUri: (uri) => console.log("uri", uri),
+    onText: (text) => console.log("text", text),
+  });
 
   return (
     <>
@@ -102,8 +114,20 @@ const Checkout = () => {
               <li>Wajah dalam foto terlihat jelas</li>
             </ul>
           </div>
-          <div className="border border-dashed border-gray-400 p-3 py-10 flex justify-center items-center flex-col gap-5 rounded-md">
+          <div
+            {...dropAreaBondPrimary}
+            className={`border border-dashed p-3 py-10 flex justify-center items-center flex-col gap-5 rounded-md cursor-pointer ${
+              dropAreaStatePrimary.over
+                ? "border-blue-400 bg-blue-100"
+                : "border-gray-400"
+            }`}
+            onClick={() => {
+              inputFilePrimary?.current?.click();
+            }}
+          >
             <p className="font-bold">Drop files here</p>
+            <input type="file" id="imgupload" hidden ref={inputFilePrimary} />
+            <FaCloudUploadAlt className="text-6xl" />
             <Button colorScheme={"facebook"} leftIcon={<HiOutlineSearch />}>
               Choose file
             </Button>
@@ -118,8 +142,20 @@ const Checkout = () => {
               <li>Maksimal foto yang ditambahkan adalah 10</li>
             </ul>
           </div>
-          <div className="border border-dashed border-gray-400 p-3 py-10 flex justify-center items-center flex-col gap-5 rounded-md">
+          <div
+            {...dropAreaBondSecondary}
+            className={`border border-dashed p-3 py-10 flex justify-center items-center flex-col gap-5 rounded-md cursor-pointer ${
+              dropAreaStateSecondary.over
+                ? "border-blue-400 bg-blue-100"
+                : "border-gray-400"
+            }`}
+            onClick={() => {
+              inputFileSecondary?.current?.click();
+            }}
+          >
             <p className="font-bold">Drop files here</p>
+            <input type="file" id="imgupload" hidden ref={inputFileSecondary} />
+            <FaCloudUploadAlt className="text-6xl" />
             <Button colorScheme={"facebook"} leftIcon={<HiOutlineSearch />}>
               Choose file
             </Button>
