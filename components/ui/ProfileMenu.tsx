@@ -67,7 +67,7 @@ const ProfileMenu: React.FC<IProps> = ({ isOpen, onToggle, type }) => {
             <RiSignalTowerFill />
             <p>Overview</p>
           </Link>
-          <Link
+          {/* <Link
             href="/account/products"
             className={`flex items-center w-full gap-3 p-3 font-bold bg-white  rounded-xl ${
               type === ProfileType.PRODUCTS &&
@@ -76,7 +76,7 @@ const ProfileMenu: React.FC<IProps> = ({ isOpen, onToggle, type }) => {
           >
             <RiShoppingBag3Fill />
             <p>Shop</p>
-          </Link>
+          </Link> */}
           <Link
             href="/account/orders"
             className={`flex items-center w-full gap-3 p-3 font-bold bg-white  rounded-xl ${
