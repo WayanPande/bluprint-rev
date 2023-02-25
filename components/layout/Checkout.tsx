@@ -70,6 +70,7 @@ const Checkout = () => {
   const onPrimaryFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setPrimaryFile((prev) => {
+        // @ts-expect-error
         if (e.target.files[0]) return e.target.files[0];
         return prev;
       });
