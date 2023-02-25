@@ -16,11 +16,13 @@ import {
   useDisclosure,
   useMediaQuery,
   useRadioGroup,
+  useToast,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { HiOutlineSearch } from "react-icons/hi";
+import { IoMdClose } from "react-icons/io";
 import { RiSecurePaymentFill } from "react-icons/ri";
 import { useDropArea } from "react-use";
 import CheckoutModelCard from "../card/CheckoutModelCard";
@@ -31,6 +33,9 @@ const Checkout = () => {
   const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
   const inputFilePrimary = useRef<HTMLInputElement | null>(null);
   const inputFileSecondary = useRef<HTMLInputElement | null>(null);
+  const [primaryFile, setPrimaryFile] = useState<File | null>(null);
+  const [secondaryFile, setSecondaryFile] = useState<File[]>([]);
+  const toast = useToast();
 
   const { value, getRadioProps, getRootProps } = useRadioGroup({
     defaultValue: "1",
@@ -38,16 +43,54 @@ const Checkout = () => {
   });
 
   const [dropAreaBondPrimary, dropAreaStatePrimary] = useDropArea({
-    onFiles: (files) => console.log("files", files),
+    onFiles: (files) => {
+      if (files.length > 1) {
+        toast({
+          title: "Jumlah gambar melebihi batas maksimal!",
+          description: "Silahkan pilih hanya satu gambar utama.",
+          status: "warning",
+          duration: 5000,
+          isClosable: true,
+        });
+        return;
+      }
+
+      setPrimaryFile(files[files.length - 1]);
+    },
     onUri: (uri) => console.log("uri", uri),
     onText: (text) => console.log("text", text),
   });
 
   const [dropAreaBondSecondary, dropAreaStateSecondary] = useDropArea({
-    onFiles: (files) => console.log("files", files),
+    onFiles: (files) => setSecondaryFile((prev) => [...prev, ...files]),
     onUri: (uri) => console.log("uri", uri),
     onText: (text) => console.log("text", text),
   });
+
+  const onPrimaryFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setPrimaryFile((prev) => {
+        if (e.target.files[0]) return e.target.files[0];
+        return prev;
+      });
+    }
+  };
+
+  const onSecondaryFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
+    // @ts-expect-error
+    setSecondaryFile((prev) => [...prev, ...e.target.files]);
+  };
+
+  const removePrimaryFile = () => {
+    setPrimaryFile(null);
+  };
+
+  const removeSecondaryFile = (data: File) => {
+    setSecondaryFile((prev) => {
+      return prev.filter((item) => item !== data);
+    });
+  };
 
   return (
     <>
@@ -116,21 +159,47 @@ const Checkout = () => {
           </div>
           <div
             {...dropAreaBondPrimary}
-            className={`border border-dashed p-3 py-10 flex justify-center items-center flex-col gap-5 rounded-md cursor-pointer ${
+            className={`border border-dashed p-3 py-10 flex justify-center items-center flex-col gap-5 rounded-md ${
               dropAreaStatePrimary.over
                 ? "border-blue-400 bg-blue-100"
                 : "border-gray-400"
             }`}
-            onClick={() => {
-              inputFilePrimary?.current?.click();
-            }}
           >
             <p className="font-bold">Drop files here</p>
-            <input type="file" id="imgupload" hidden ref={inputFilePrimary} />
+            <input
+              type="file"
+              id="imgupload"
+              hidden
+              accept="image/*"
+              ref={inputFilePrimary}
+              onChange={onPrimaryFileChange}
+            />
             <FaCloudUploadAlt className="text-6xl" />
-            <Button colorScheme={"facebook"} leftIcon={<HiOutlineSearch />}>
+            <Button
+              colorScheme={"facebook"}
+              leftIcon={<HiOutlineSearch />}
+              onClick={() => {
+                inputFilePrimary?.current?.click();
+              }}
+            >
               Choose file
             </Button>
+            <div className="flex flex-wrap justify-center gap-2">
+              {primaryFile && (
+                <div className="border border-blue-400 hover:shadow-md transition-shadow p-1 relative rounded">
+                  <img
+                    className="w-56 object-cover"
+                    src={URL.createObjectURL(primaryFile)}
+                  />
+                  <div
+                    className="absolute top-2 right-2 text-xl hover:scale-125 hover:text-white hover:bg-blue-500 dark:bg-blue-500 transition-all cursor-pointer bg-gray-200 rounded"
+                    onClick={removePrimaryFile}
+                  >
+                    <IoMdClose />
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <div className="mt-10 flex flex-col gap-5 ">
@@ -144,21 +213,52 @@ const Checkout = () => {
           </div>
           <div
             {...dropAreaBondSecondary}
-            className={`border border-dashed p-3 py-10 flex justify-center items-center flex-col gap-5 rounded-md cursor-pointer ${
+            className={`border border-dashed p-3 py-10 flex justify-center items-center flex-col gap-5 rounded-md ${
               dropAreaStateSecondary.over
                 ? "border-blue-400 bg-blue-100"
                 : "border-gray-400"
             }`}
-            onClick={() => {
-              inputFileSecondary?.current?.click();
-            }}
           >
             <p className="font-bold">Drop files here</p>
-            <input type="file" id="imgupload" hidden ref={inputFileSecondary} />
+            <input
+              type="file"
+              id="imgupload"
+              hidden
+              accept="image/*"
+              ref={inputFileSecondary}
+              onChange={onSecondaryFileChange}
+            />
             <FaCloudUploadAlt className="text-6xl" />
-            <Button colorScheme={"facebook"} leftIcon={<HiOutlineSearch />}>
+            <Button
+              colorScheme={"facebook"}
+              leftIcon={<HiOutlineSearch />}
+              onClick={() => {
+                inputFileSecondary?.current?.click();
+              }}
+            >
               Choose file
             </Button>
+            <div className="flex flex-wrap justify-center gap-2">
+              {secondaryFile?.map((data, i) => {
+                return (
+                  <div
+                    key={"primary-" + i}
+                    className="border border-blue-400 p-1 relative h-fit rounded hover:shadow-md transition-shadow"
+                  >
+                    <img
+                      className="w-36 object-cover"
+                      src={data ? URL.createObjectURL(data) : ""}
+                    />
+                    <div
+                      className="absolute top-2 right-2 text-xl hover:scale-125 dark:bg-blue-500 hover:text-white hover:bg-blue-500 transition-all cursor-pointer bg-gray-200 rounded"
+                      onClick={() => removeSecondaryFile(data)}
+                    >
+                      <IoMdClose />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
         <div className="mt-10">
