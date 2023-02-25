@@ -56,12 +56,12 @@ const ProfileMenu: React.FC<IProps> = ({ isOpen, onToggle, type }) => {
         </Button>
       </div>
       <Collapse in={isScreenWidthMd ? true : isOpen} animateOpacity>
-        <div className="flex flex-col gap-5 p-3 bg-gray-100 rounded-xl">
+        <div className="flex flex-col gap-5 p-3 bg-gray-100 dark:bg-fuchsia-300 dark:text-black rounded-xl">
           <Link
             href="/account/overview"
             className={`flex items-center w-full gap-3 p-3 font-bold bg-white  rounded-xl ${
               type === ProfileType.OVERVIEW &&
-              "shadow-lg border-blue-400 border-2"
+              "shadow-lg border-blue-400 border-2 dark:border-black"
             }`}
           >
             <RiSignalTowerFill />
